@@ -1,0 +1,17 @@
+{
+  "name": "indiamart-ai-agent",
+  "version": "1.0.0",
+  "description": "IndiaMART AI Sales Agent",
+  "private": true,
+  "scripts": {
+    "install:all": "cd apps/backend && npm install && cd ../frontend && npm install",
+    "dev:backend": "cd apps/backend && npm run dev",
+    "dev:frontend": "cd apps/frontend && npm run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "db:push": "cd apps/backend && npx prisma db push",
+    "db:seed": "cd apps/backend && npx ts-node prisma/seed.ts"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

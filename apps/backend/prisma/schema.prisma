@@ -1,0 +1,381 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+// ─── ENUMS ───────────────────────────────────────────────────────────────────
+
+enum Role {
+  ADMIN
+  SALES_MANAGER
+  SALES_AGENT
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  REQUIREMENT_GATHERING
+  QUOTATION_SENT
+  FOLLOW_UP
+  NEGOTIATION
+  CONVERTED
+  LOST
+}
+
+enum LeadSource {
+  INDIAMART
+  EMAIL
+  WHATSAPP
+  MANUAL
+  CSV_IMPORT
+  WEBSITE
+}
+
+enum LeadTemperature {
+  HOT
+  WARM
+  COLD
+}
+
+enum MessageSender {
+  CUSTOMER
+  AI
+  AGENT
+}
+
+enum QuotationStatus {
+  DRAFT
+  SENT
+  VIEWED
+  ACCEPTED
+  REJECTED
+  EXPIRED
+}
+
+enum FollowUpStatus {
+  PENDING
+  SENT
+  FAILED
+  SKIPPED
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum ActivityType {
+  LEAD_CREATED
+  LEAD_UPDATED
+  LEAD_STATUS_CHANGED
+  MESSAGE_SENT
+  MESSAGE_RECEIVED
+  QUOTATION_CREATED
+  QUOTATION_SENT
+  FOLLOW_UP_SENT
+  ORDER_CREATED
+  ORDER_UPDATED
+  NOTE_ADDED
+  CALL_LOGGED
+}
+
+// ─── MODELS ──────────────────────────────────────────────────────────────────
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  password     String
+  name         String
+  phone        String?
+  role         Role     @default(SALES_AGENT)
+  isActive     Boolean  @default(true)
+  avatar       String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  leads        Lead[]
+  activities   Activity[]
+  quotations   Quotation[]
+  messages     Message[]
+
+  @@map("users")
+}
+
+model Lead {
+  id               String          @id @default(uuid())
+  name             String
+  email            String?
+  phone            String
+  company          String?
+  designation      String?
+  city             String?
+  state            String?
+  pincode          String?
+  source           LeadSource      @default(INDIAMART)
+  status           LeadStatus      @default(NEW)
+  temperature      LeadTemperature @default(COLD)
+  qualificationScore Int           @default(0)
+  
+  // Qualification parameters
+  budget           String?
+  quantity         String?
+  urgency          String?         // LOW, MEDIUM, HIGH
+  purchaseIntent   String?         // LOW, MEDIUM, HIGH
+  companyType      String?         // SME, ENTERPRISE, STARTUP, GOVERNMENT
+  
+  // IndiaMART specific
+  indiamartId      String?         @unique
+  indiamartQuery   String?
+  
+  notes            String?
+  tags             String[]
+  
+  assignedToId     String?
+  assignedTo       User?           @relation(fields: [assignedToId], references: [id])
+  
+  customerId       String?
+  customer         Customer?       @relation(fields: [customerId], references: [id])
+  
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  lastContactedAt  DateTime?
+  convertedAt      DateTime?
+
+  conversations    Conversation[]
+  quotations       Quotation[]
+  followUps        FollowUp[]
+  activities       Activity[]
+  orders           Order[]
+
+  @@map("leads")
+}
+
+model Document {
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  metadata  Json?
+  embedding Unsupported("vector(768)")?
+  createdAt DateTime @default(now())
+
+  @@map("documents")
+}
+
+model Customer {
+  id           String   @id @default(uuid())
+  name         String
+  email        String?
+  phone        String
+  company      String?
+  designation  String?
+  gst          String?
+  address      String?
+  city         String?
+  state        String?
+  pincode      String?
+  country      String   @default("India")
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  leads        Lead[]
+  quotations   Quotation[]
+  orders       Order[]
+
+  @@map("customers")
+}
+
+model Conversation {
+  id           String    @id @default(uuid())
+  leadId       String
+  lead         Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  channel      String    @default("CHAT")  // CHAT, EMAIL, WHATSAPP
+  aiContext    Json?     // stores AI conversation state
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  messages     Message[]
+
+  @@map("conversations")
+}
+
+model Message {
+  id             String        @id @default(uuid())
+  conversationId String
+  conversation   Conversation  @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender         MessageSender
+  content        String
+  metadata       Json?         // attachments, quotation links etc.
+  sentById       String?
+  sentBy         User?         @relation(fields: [sentById], references: [id])
+  isRead         Boolean       @default(false)
+  createdAt      DateTime      @default(now())
+
+  @@map("messages")
+}
+
+model Product {
+  id           String   @id @default(uuid())
+  name         String
+  description  String?
+  category     String
+  sku          String?  @unique
+  brand        String?
+  model        String?
+  unitPrice    Float
+  taxRate      Float    @default(18)  // GST %
+  unit         String   @default("Piece")
+  stock        Int?
+  imageUrl     String?
+  specifications Json?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  quotationItems QuotationItem[]
+
+  @@map("products")
+}
+
+model Quotation {
+  id              String          @id @default(uuid())
+  quotationNumber String          @unique
+  leadId          String
+  lead            Lead            @relation(fields: [leadId], references: [id])
+  customerId      String?
+  customer        Customer?       @relation(fields: [customerId], references: [id])
+  createdById     String
+  createdBy       User            @relation(fields: [createdById], references: [id])
+  
+  status          QuotationStatus @default(DRAFT)
+  
+  // Totals
+  subtotal        Float
+  taxAmount       Float
+  discountAmount  Float           @default(0)
+  grandTotal      Float
+  
+  // Terms
+  validUntil      DateTime
+  deliveryTerms   String?
+  paymentTerms    String?
+  warranty        String?
+  notes           String?
+  
+  // PDF
+  pdfUrl          String?
+  
+  sentAt          DateTime?
+  viewedAt        DateTime?
+  acceptedAt      DateTime?
+  
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  items           QuotationItem[]
+
+  @@map("quotations")
+}
+
+model QuotationItem {
+  id           String    @id @default(uuid())
+  quotationId  String
+  quotation    Quotation @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  productId    String?
+  product      Product?  @relation(fields: [productId], references: [id])
+  
+  name         String
+  description  String?
+  quantity     Int
+  unitPrice    Float
+  taxRate      Float     @default(18)
+  taxAmount    Float
+  total        Float
+  
+  createdAt    DateTime  @default(now())
+
+  @@map("quotation_items")
+}
+
+model FollowUp {
+  id           String         @id @default(uuid())
+  leadId       String
+  lead         Lead           @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  
+  followUpNumber Int          @default(1)  // 1, 2, 3
+  channel      String         @default("EMAIL")  // EMAIL, WHATSAPP, CALL
+  message      String
+  status       FollowUpStatus @default(PENDING)
+  scheduledAt  DateTime
+  sentAt       DateTime?
+  error        String?
+  
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  @@map("follow_ups")
+}
+
+model Order {
+  id           String      @id @default(uuid())
+  orderNumber  String      @unique
+  leadId       String
+  lead         Lead        @relation(fields: [leadId], references: [id])
+  customerId   String?
+  customer     Customer?   @relation(fields: [customerId], references: [id])
+  
+  status       OrderStatus @default(PENDING)
+  totalAmount  Float
+  notes        String?
+  
+  deliveryAddress String?
+  expectedDelivery DateTime?
+  
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@map("orders")
+}
+
+model Activity {
+  id           String       @id @default(uuid())
+  type         ActivityType
+  description  String
+  metadata     Json?
+  
+  leadId       String?
+  lead         Lead?        @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  userId       String?
+  user         User?        @relation(fields: [userId], references: [id])
+  
+  createdAt    DateTime     @default(now())
+
+  @@map("activities")
+}
+
+model Notification {
+  id           String   @id @default(uuid())
+  title        String
+  message      String
+  type         String   @default("INFO")  // INFO, WARNING, SUCCESS, ERROR
+  isRead       Boolean  @default(false)
+  targetUserId String?
+  metadata     Json?
+  createdAt    DateTime @default(now())
+
+  @@map("notifications")
+}

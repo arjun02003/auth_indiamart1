@@ -1,0 +1,79 @@
+2026-05-28 23:07:21 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-28 23:07:22 [info]: 📡 Socket.IO ready
+2026-05-28 23:07:22 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-28 23:07:22 [info]: ⏰ Follow-up scheduler started
+2026-05-28 23:30:23 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-28 23:30:23 [info]: 📡 Socket.IO ready
+2026-05-28 23:30:23 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-28 23:30:23 [info]: ⏰ Follow-up scheduler started
+2026-05-29 00:00:00 [info]: ⏰ Running follow-up scheduler...
+2026-05-29 00:00:00 [error]: PrismaClientInitializationError: 
+Invalid `prisma.followUp.findMany()` invocation in
+C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\src\services\scheduler\followup.service.ts:31:50
+
+  28 const now = new Date();
+  29 
+  30 // Get all pending follow-ups that are due
+→ 31 const dueFollowUps = await prisma.followUp.findMany(
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:11
+   | 
+10 |   provider   = "postgresql"
+11 |   url        = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+    at $n.handleRequestError (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at l (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at FollowUpScheduler.processFollowUps (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\src\services\scheduler\followup.service.ts:31:28)
+    at Task._execution (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\src\services\scheduler\followup.service.ts:14:7)
+2026-05-29 05:30:16 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-29 05:30:16 [info]: 📡 Socket.IO ready
+2026-05-29 05:30:16 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-29 05:30:16 [info]: ⏰ Follow-up scheduler started
+2026-05-29 05:36:20 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-29 05:36:20 [info]: 📡 Socket.IO ready
+2026-05-29 05:36:20 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-29 05:36:20 [info]: ⏰ Follow-up scheduler started
+2026-05-29 05:36:24 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-29 05:36:24 [info]: 📡 Socket.IO ready
+2026-05-29 05:36:24 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-29 05:36:24 [info]: ⏰ Follow-up scheduler started
+2026-05-29 05:39:13 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-29 05:39:13 [info]: 📡 Socket.IO ready
+2026-05-29 05:39:13 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-29 05:39:13 [info]: ⏰ Follow-up scheduler started
+2026-05-29 05:39:16 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-29 05:39:16 [info]: 📡 Socket.IO ready
+2026-05-29 05:39:16 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-29 05:39:16 [info]: ⏰ Follow-up scheduler started
+2026-05-29 05:40:07 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-29 05:40:07 [info]: 📡 Socket.IO ready
+2026-05-29 05:40:07 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-29 05:40:07 [info]: ⏰ Follow-up scheduler started
+2026-05-29 05:42:59 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-29 05:42:59 [info]: 📡 Socket.IO ready
+2026-05-29 05:42:59 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-29 05:42:59 [info]: ⏰ Follow-up scheduler started
+2026-05-29 05:43:02 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-29 05:43:02 [info]: 📡 Socket.IO ready
+2026-05-29 05:43:02 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-29 05:43:02 [info]: ⏰ Follow-up scheduler started
+2026-05-29 05:52:23 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-29 05:52:23 [info]: 📡 Socket.IO ready
+2026-05-29 05:52:23 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-29 05:52:23 [info]: ⏰ Follow-up scheduler started
+2026-05-29 05:52:48 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-29 05:52:48 [info]: 📡 Socket.IO ready
+2026-05-29 05:52:48 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-29 05:52:48 [info]: ⏰ Follow-up scheduler started
+2026-05-29 05:53:07 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-29 05:53:07 [info]: 📡 Socket.IO ready
+2026-05-29 05:53:07 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-29 05:53:07 [info]: ⏰ Follow-up scheduler started
+2026-05-29 05:53:55 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-29 05:53:55 [info]: 📡 Socket.IO ready
+2026-05-29 05:53:55 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-29 05:53:55 [info]: ⏰ Follow-up scheduler started

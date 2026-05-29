@@ -1,0 +1,38 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.COMPANY = void 0;
+// ─── ASN Expo Company Constants ────────────────────────────────────────────
+exports.COMPANY = {
+    name: 'ASN Expo',
+    ownerName: 'Rahul Khawas',
+    designation: 'CEO',
+    address: 'Wing-B, At Kasturi Heights, 7th Floor, Sarswati Nagar, Nagpur, Maharashtra, India – 440008',
+    city: 'Nagpur',
+    state: 'Maharashtra',
+    pincode: '440008',
+    country: 'India',
+    phone1: '9860514336',
+    phone2: '8087987048',
+    email: 'asnexpo94@gmail.com',
+    gstin: '27ARRPN6869Q1ZC',
+    pan: 'ARRPN6869Q',
+    iec: 'ARRPN6869Q',
+    bank: {
+        accountNumber: '50100504190491',
+        accountHolder: 'Rahul Ravi Khawas',
+        bankName: 'HDFC BANK LTD.',
+        ifsc: 'HDFC0009524',
+        branch: 'Nagpur',
+    },
+    termsAndConditions: [
+        'All prices are inclusive of GST unless stated otherwise.',
+        'Payment Terms: 50% advance, 50% before delivery.',
+        'Delivery: 3-7 working days from order confirmation.',
+        'Warranty as per manufacturer terms.',
+        'This quotation is valid for 15 days from the date of issue.',
+        'Goods once sold will not be taken back.',
+        'Any dispute subject to Nagpur jurisdiction only.',
+    ],
+    tagline: 'Your Trusted IT Partner in Nagpur',
+};
+//# sourceMappingURL=company.js.map
