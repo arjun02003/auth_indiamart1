@@ -52,8 +52,12 @@ class FollowUpScheduler {
 
       // Mark leads as inactive after 14 days
       await this.markInactiveLeads();
-    } catch (error) {
-      logger.error('Follow-up scheduler error:', error);
+    } catch (error: any) {
+      if (error.code === 'P1000' || error.message?.includes('Can\'t reach database')) {
+        logger.warn('⚠️ Database unavailable - scheduler will retry next cycle');
+      } else {
+        logger.error('Follow-up scheduler error:', error);
+      }
     }
   }
 

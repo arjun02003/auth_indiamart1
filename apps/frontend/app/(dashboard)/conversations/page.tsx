@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import api from '@/lib/api';
 import { io, Socket } from 'socket.io-client';
-import { Send, Bot, User, Phone, Mail, Building, LayoutList } from 'lucide-react';
+import { Send, Bot, User, Phone, Mail, Building, LayoutList, MessageSquare } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
 import { format } from 'date-fns';
 

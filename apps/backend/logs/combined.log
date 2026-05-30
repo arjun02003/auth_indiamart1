@@ -129,3 +129,17 @@ Please make sure your database server is running at `localhost:5432`.
 2026-05-30 05:13:59 [info]: 📡 Socket.IO ready
 2026-05-30 05:13:59 [info]: ✅ Follow-up scheduler initialized (runs hourly)
 2026-05-30 05:13:59 [info]: ⏰ Follow-up scheduler started
+2026-05-30 05:16:37 [info]: Socket connected: mq_jEn5Txh8r9DBTAAAC
+2026-05-30 05:16:38 [info]: Socket disconnected: mq_jEn5Txh8r9DBTAAAC
+2026-05-30 05:18:03 [info]: Socket connected: geJS1R5ScPjvYhohAAAF
+2026-05-30 05:18:08 [info]: Socket disconnected: geJS1R5ScPjvYhohAAAF
+2026-05-30 05:18:56 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-30 05:18:56 [info]: 📡 Socket.IO ready
+2026-05-30 05:18:56 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-30 05:18:56 [info]: ⏰ Follow-up scheduler started
+2026-05-30 05:18:56 [info]: Socket connected: Rb2xd3pcryhG6pzYAAAB
+2026-05-30 05:19:31 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-30 05:19:31 [info]: 📡 Socket.IO ready
+2026-05-30 05:19:31 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-30 05:19:31 [info]: ⏰ Follow-up scheduler started
+2026-05-30 05:19:32 [info]: Socket connected: Z16vWp2cNb4fm0HKAAAB

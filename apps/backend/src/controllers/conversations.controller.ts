@@ -1,6 +1,5 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { prisma } from '../utils/prisma';
-import { AuthRequest } from '../middleware/auth.middleware';
 import { sendAIMessage, ChatMessage } from '../services/ai/gemini.service';
 import { io } from '../index';
 import { getRouteParam } from '../utils/express';
