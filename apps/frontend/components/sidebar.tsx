@@ -2,8 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, MessageSquare, FileText, Package, ShoppingCart, Settings, PieChart, LogOut } from 'lucide-react';
-import { useAuthStore } from '@/store/auth';
+import { LayoutDashboard, Users, MessageSquare, FileText, Package, ShoppingCart, Settings, PieChart } from 'lucide-react';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -18,7 +17,6 @@ const navigation = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const logout = useAuthStore((state) => state.logout);
 
   return (
     <div className="flex h-full w-64 flex-col bg-slate-900 border-r border-slate-800">
@@ -64,16 +62,6 @@ export function Sidebar() {
             <Settings className="mr-3 h-5 w-5 text-slate-500 group-hover:text-slate-300" />
             Settings
           </Link>
-          <button
-            onClick={() => {
-              logout();
-              window.location.href = '/login';
-            }}
-            className="group flex w-full items-center rounded-lg px-3 py-2 text-sm font-medium text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-colors"
-          >
-            <LogOut className="mr-3 h-5 w-5 text-slate-500 group-hover:text-red-400" />
-            Sign out
-          </button>
         </div>
       </div>
     </div>

@@ -77,3 +77,55 @@ Validation Error Count: 1
 2026-05-29 05:53:55 [info]: 📡 Socket.IO ready
 2026-05-29 05:53:55 [info]: ✅ Follow-up scheduler initialized (runs hourly)
 2026-05-29 05:53:55 [info]: ⏰ Follow-up scheduler started
+2026-05-29 05:54:35 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-29 05:54:35 [info]: 📡 Socket.IO ready
+2026-05-29 05:54:35 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-29 05:54:35 [info]: ⏰ Follow-up scheduler started
+2026-05-29 06:00:00 [info]: ⏰ Running follow-up scheduler...
+2026-05-29 06:00:04 [error]: PrismaClientInitializationError: 
+Invalid `prisma.followUp.findMany()` invocation in
+C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\src\services\scheduler\followup.service.ts:31:50
+
+  28 const now = new Date();
+  29 
+  30 // Get all pending follow-ups that are due
+→ 31 const dueFollowUps = await prisma.followUp.findMany(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at l (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at FollowUpScheduler.processFollowUps (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\src\services\scheduler\followup.service.ts:31:28)
+    at Task._execution (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\src\services\scheduler\followup.service.ts:14:7)
+2026-05-30 04:47:41 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-30 04:47:41 [info]: 📡 Socket.IO ready
+2026-05-30 04:47:41 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-30 04:47:41 [info]: ⏰ Follow-up scheduler started
+2026-05-30 04:59:00 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-30 04:59:00 [info]: 📡 Socket.IO ready
+2026-05-30 04:59:00 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-30 04:59:00 [info]: ⏰ Follow-up scheduler started
+2026-05-30 05:00:00 [info]: ⏰ Running follow-up scheduler...
+2026-05-30 05:00:04 [error]: PrismaClientInitializationError: 
+Invalid `prisma.followUp.findMany()` invocation in
+C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\src\services\scheduler\followup.service.ts:31:50
+
+  28 const now = new Date();
+  29 
+  30 // Get all pending follow-ups that are due
+→ 31 const dueFollowUps = await prisma.followUp.findMany(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at l (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at FollowUpScheduler.processFollowUps (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\src\services\scheduler\followup.service.ts:31:28)
+    at Task._execution (C:\Users\ARJUN\.gemini\antigravity\scratch\indiamart-ai-agent\apps\backend\src\services\scheduler\followup.service.ts:14:7)
+2026-05-30 05:13:59 [info]: 🚀 ASN Expo AI Sales Agent Backend running on port 5000
+2026-05-30 05:13:59 [info]: 📡 Socket.IO ready
+2026-05-30 05:13:59 [info]: ✅ Follow-up scheduler initialized (runs hourly)
+2026-05-30 05:13:59 [info]: ⏰ Follow-up scheduler started

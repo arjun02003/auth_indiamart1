@@ -1,10 +1,8 @@
 'use client';
 
 import { Bell, Search, User } from 'lucide-react';
-import { useAuthStore } from '@/store/auth';
 
 export function Topbar() {
-  const user = useAuthStore((state) => state.user);
 
   return (
     <header className="flex h-16 shrink-0 items-center gap-x-4 border-b border-slate-800 bg-slate-900/50 backdrop-blur-md px-6 shadow-sm z-10">
@@ -36,11 +34,11 @@ export function Topbar() {
 
           <div className="flex items-center gap-x-3 cursor-pointer p-1.5 rounded-lg hover:bg-slate-800/50 transition-colors">
             <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold text-sm shadow-[0_0_10px_rgba(37,99,235,0.5)]">
-              {user?.name?.charAt(0) || <User className="h-4 w-4" />}
+              <User className="h-4 w-4" />
             </div>
             <span className="hidden lg:flex lg:items-center">
               <span className="text-sm font-medium leading-6 text-slate-200" aria-hidden="true">
-                {user?.name || 'User'}
+                System
               </span>
             </span>
           </div>
